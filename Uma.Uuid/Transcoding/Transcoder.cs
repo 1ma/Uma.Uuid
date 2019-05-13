@@ -3,7 +3,10 @@ using System.Text;
 
 namespace Uma.Uuid.Transcoding
 {
-    public static class Transcoding
+    /// <summary>
+    /// The Transcoding class provides a C# implementation of the bin2hex() and hex2bin() PHP functions.
+    /// </summary>
+    public static class Transcoder
     {
         private const byte ASCII_0 = 48;
         private const byte ASCII_9 = 57;
@@ -12,6 +15,9 @@ namespace Uma.Uuid.Transcoding
         private const byte ASCII_a = 97;
         private const byte ASCII_f = 102;
 
+        /// <summary>
+        /// Turns a byte array into a hex-encoded string following big-endian order.
+        /// </summary>
         public static string BinToHex(byte[] input)
         {
             var sb = new StringBuilder(2 * input.Length);
@@ -21,13 +27,17 @@ namespace Uma.Uuid.Transcoding
                 var hi = (byte) (b / 16);
                 var lo = (byte) (b % 16);
 
-                sb.Append(antiDerp(hi));
-                sb.Append(antiDerp(lo));
+                sb.Append(HexEncode(hi));
+                sb.Append(HexEncode(lo));
             }
 
             return sb.ToString();
         }
 
+        /// <summary>
+        /// Decodes a hex-encoded string into a byte array following big-endian order.
+        /// </summary>
+        /// <exception cref="ArgumentException">If input length is not even, or it contains a non hexadecimal character.</exception>
         public static byte[] HexToBin(string input)
         {
             if (input.Length % 2 != 0)
@@ -39,12 +49,19 @@ namespace Uma.Uuid.Transcoding
 
             for (var i = 0; i < bytes.Length; i++)
             {
-                bytes[i] = (byte) (16 * derp(input[2 * i]) + derp(input[2 * i + 1]));
+                bytes[i] = (byte) (16 * HexDecode(input[2 * i]) + HexDecode(input[2 * i + 1]));
             }
 
             return bytes;
         }
-        private static int derp(char hb)
+
+        /// <summary>
+        /// Decodes an ASCII character to a half-byte.
+        /// </summary>
+        /// <param name="hb">An ASCII character representing a half-byte.</param>
+        /// <returns>An integer between 0 and 15.</returns>
+        /// <exception cref="ArgumentException">If hb does not fall in one of the [0-9], [A-F] or [a-f] ranges.</exception>
+        private static int HexDecode(char hb)
         {
             var cast = (byte) hb;
 
@@ -66,7 +83,12 @@ namespace Uma.Uuid.Transcoding
             throw new ArgumentException("fuck this input");
         }
 
-        private static char antiDerp(byte b)
+        /// <summary>
+        /// Encodes a half-byte into an ASCII character.
+        /// </summary>
+        /// <param name="b">A byte between 0 and 15.</param>
+        /// <returns>A character in the [0-9] or [a-f] ranges.</returns>
+        private static char HexEncode(byte b)
         {
             if (b <= 9)
             {
