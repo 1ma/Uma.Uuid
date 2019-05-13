@@ -18,7 +18,11 @@ namespace Uma.Uuid.Transcoding
 
             foreach (var b in input)
             {
-                sb.Append(lol(b));
+                var hi = (byte) (b / 16);
+                var lo = (byte) (b % 16);
+
+                sb.Append(antiDerp(hi));
+                sb.Append(antiDerp(lo));
             }
 
             return sb.ToString();
@@ -40,15 +44,6 @@ namespace Uma.Uuid.Transcoding
 
             return bytes;
         }
-
-        private static string lol(byte b)
-        {
-            var hi = (byte) (b / 16);
-            var lo = (byte) (b % 16);
-
-            return new string(new[] {antiDerp(hi), antiDerp(lo)});
-        }
-
         private static int derp(char hb)
         {
             var cast = (byte) hb;
@@ -73,7 +68,7 @@ namespace Uma.Uuid.Transcoding
 
         private static char antiDerp(byte b)
         {
-            if (0 <= b && b <= 9)
+            if (b <= 9)
             {
                 return (char) (b + ASCII_0);
             }
