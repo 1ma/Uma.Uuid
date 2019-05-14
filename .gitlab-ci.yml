@@ -1,26 +1,8 @@
 stages:
-  - diagnostics
-  - testing
+  - test
 
-services:
-  - docker:18.06.1-ce-dind
-
-image:
-  name: docker/compose:1.23.2
-  entrypoint: [""]
-
-variables:
-  DOCKER_HOST: tcp://docker:2375/
-  DOCKER_DRIVER: overlay2
-
-sanity-check:
-  stage: diagnostics
+test:
+  stage: test
+  image: mcr.microsoft.com/dotnet/core/sdk:2.2-alpine
   script:
-    - docker info
-    - docker version
-    - docker-compose version
-
-run-tests:
-  stage: testing
-  script:
-    - docker-compose run --rm test-runner
+    - dotnet test --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include=[Uma.*]*
