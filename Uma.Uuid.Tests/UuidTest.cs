@@ -49,7 +49,7 @@ namespace Uma.Uuid.Tests
             Assert.Throws<ArgumentException>(() => new Uuid("00112233-4455-6677-8899-aabbccddeef"));
             Assert.Throws<ArgumentException>(() => new Uuid("00112233-4455-66778-899-aabbccddeeff"));
             Assert.Throws<ArgumentException>(() => new Uuid("00112233-4455-66x7-8899-aabbccddeeff"));
-            Assert.Throws<ArgumentException>(() => new Uuid(new byte[] {}));
+            Assert.Throws<ArgumentException>(() => new Uuid(new byte[] { }));
             Assert.Throws<ArgumentException>(() => new Uuid(new byte[] {0x00, 0x01}));
         }
     }

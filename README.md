@@ -1,0 +1,1 @@
+# Uma.Uuid [![pipeline status](https://gitlab.com/1ma/uma.uuid/badges/master/pipeline.svg)](https://gitlab.com/1ma/uma.uuid/pipelines) [![coverage report](https://gitlab.com/1ma/uma.uuid/badges/master/coverage.svg)](https://gitlab.com/1ma/uma.uuid/commits/master)
