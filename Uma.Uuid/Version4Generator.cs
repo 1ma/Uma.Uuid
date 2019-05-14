@@ -7,11 +7,11 @@ namespace Uma.Uuid
     ///
     /// https://tools.ietf.org/html/rfc4122#section-4.4
     /// </summary>
-    public class V4Generator : IUuidGenerator
+    public class Version4Generator : IUuidGenerator
     {
         private readonly Random _random;
 
-        public V4Generator()
+        public Version4Generator()
         {
             _random = new Random();
         }

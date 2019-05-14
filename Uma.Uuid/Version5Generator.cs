@@ -9,7 +9,7 @@ namespace Uma.Uuid
     ///
     /// https://tools.ietf.org/html/rfc4122#section-4.3
     /// </summary>
-    public class V5Generator : IUuidGenerator
+    public class Version5Generator : IUuidGenerator
     {
         /**
          * These are a few well known Guids listed in Appendix C
@@ -23,7 +23,7 @@ namespace Uma.Uuid
         private readonly SHA1 _hasher;
         private readonly byte[] _hi;
 
-        public V5Generator(Uuid ns)
+        public Version5Generator(Uuid ns)
         {
             _hasher = SHA1.Create();
             _hi = ns.ToByteArray();
