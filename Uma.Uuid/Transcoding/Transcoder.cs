@@ -61,23 +61,23 @@ namespace Uma.Uuid.Transcoding
         /// <param name="hb">An ASCII character representing a half-byte.</param>
         /// <returns>An integer between 0 and 15.</returns>
         /// <exception cref="ArgumentException">If hb does not fall in one of the [0-9], [A-F] or [a-f] ranges.</exception>
-        private static int HexDecode(char hb)
+        private static byte HexDecode(char hb)
         {
             var cast = (byte) hb;
 
             if (ASCII_0 <= cast && cast <= ASCII_9)
             {
-                return cast - ASCII_0;
+                return (byte)(cast - ASCII_0);
             }
 
             if (ASCII_A <= cast && cast <= ASCII_F)
             {
-                return cast - ASCII_A + 10;
+                return (byte)(cast - ASCII_A + 10);
             }
 
             if (ASCII_a <= cast && cast <= ASCII_f)
             {
-                return cast - ASCII_a + 10;
+                return (byte)(cast - ASCII_a + 10);
             }
 
             throw new ArgumentException("fuck this input");
