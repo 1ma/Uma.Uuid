@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  dotnet:
+    image: mcr.microsoft.com/dotnet/core/sdk:2.2-alpine
+    command: dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
+    volumes:
+      - .:/project
+    working_dir: /project
