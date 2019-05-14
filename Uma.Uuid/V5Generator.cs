@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -10,7 +9,7 @@ namespace Uma.Uuid
     ///
     /// https://tools.ietf.org/html/rfc4122#section-4.3
     /// </summary>
-    public class V5Generator : IGuidGenerator
+    public class V5Generator : IUuidGenerator
     {
         /**
          * These are a few well known Guids listed in Appendix C
@@ -21,24 +20,32 @@ namespace Uma.Uuid
         public const string NS_OID = "6ba7b812-9dad-11d1-80b4-00c04fd430c8";
         public const string NS_X500 = "6ba7b814-9dad-11d1-80b4-00c04fd430c8";
 
-        private readonly SHA1 hasher;
-        private readonly byte[] prefix;
+        private readonly SHA1 _hasher;
+        private readonly byte[] _hi;
 
-        public V5Generator(Guid ns)
+        public V5Generator(Uuid ns)
         {
-            hasher = SHA1.Create();
-            prefix = GuidAdapter.FromGuid(ns);
+            _hasher = SHA1.Create();
+            _hi = ns.ToByteArray();
         }
 
-        public Guid generate(string name = null)
+        public Uuid Generate(string name = null)
         {
-            var encoded = Encoding.UTF8.GetBytes(name);
-            var input = new byte[16 + encoded.Length];
-            prefix.CopyTo(input, 0);
-            encoded.CopyTo(input, 16);
+            if (name == null)
+            {
+                throw new ArgumentException("name is mandatory. Got: null");
+            }
 
-            var hash = hasher.ComputeHash(input);
-            var bytes = hash.Take(16).ToArray();
+            var lo = Encoding.UTF8.GetBytes(name);
+            var input = new byte[16 + lo.Length];
+
+            Array.Copy(_hi, input, 16);
+            Array.Copy(lo, 0, input, 16, lo.Length);
+
+            var hash = _hasher.ComputeHash(input);
+            var bytes = new byte[16];
+
+            Array.Copy(hash, 0, bytes, 0, 16);
 
             // Set the four most significant bits (bits 12 through 15) of
             // the time_hi_and_version field to the 4-bit version number from
@@ -51,7 +58,7 @@ namespace Uma.Uuid
             bytes[8] &= 0b_1011_1111;
             bytes[8] |= 0b_1000_0000;
 
-            return GuidAdapter.FromByteArray(bytes);
+            return new Uuid(bytes);
         }
     }
 }

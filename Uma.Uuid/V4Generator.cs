@@ -7,19 +7,19 @@ namespace Uma.Uuid
     ///
     /// https://tools.ietf.org/html/rfc4122#section-4.4
     /// </summary>
-    public class V4Generator : IGuidGenerator
+    public class V4Generator : IUuidGenerator
     {
-        private readonly Random random;
+        private readonly Random _random;
 
         public V4Generator()
         {
-            random = new Random();
+            _random = new Random();
         }
-        public Guid generate(string name = null)
+        public Uuid Generate(string name = null)
         {
             var bytes = new byte[16];
 
-            random.NextBytes(bytes);
+            _random.NextBytes(bytes);
 
             // Set the four most significant bits (bits 12 through 15) of
             // the time_hi_and_version field to the 4-bit version number from
@@ -32,7 +32,7 @@ namespace Uma.Uuid
             bytes[8] &= 0b_1011_1111;
             bytes[8] |= 0b_1000_0000;
 
-            return GuidAdapter.FromByteArray(bytes);
+            return new Uuid(bytes);
         }
     }
 }
