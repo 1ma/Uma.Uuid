@@ -1,8 +1,16 @@
 stages:
-  - test
+  - testing
 
-test:
-  stage: test
+run-testsuite:
+  stage: testing
   image: mcr.microsoft.com/dotnet/core/sdk:2.2-alpine
   script:
     - dotnet test --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:Include=[Uma.*]*
+
+run-benchmarks:
+  stage: testing
+  image: mcr.microsoft.com/dotnet/core/sdk:2.2-alpine
+  script:
+    - cd Uma.Uuid.Benchmarks
+    - dotnet build -c Release
+    - dotnet bin/Release/netcoreapp2.2/Uma.Uuid.Benchmarks.dll

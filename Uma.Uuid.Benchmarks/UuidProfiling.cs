@@ -8,21 +8,39 @@ namespace Uma.Uuid.Benchmarks
     [MemoryDiagnoser]
     public class UuidProfiling
     {
-        private const string SampleUuid = "5afd6486-4279-5a52-8dad-768c6a7025fe";
+        private const string SampleString = "5afd6486-4279-5a52-8dad-768c6a7025fe";
+
+        private static readonly byte[] SampleArray =
+        {
+            0x5a, 0xfd, 0x64, 0x86, 0x42, 0x79, 0x5a, 0x52,
+            0x8d, 0xad, 0x76, 0x8c, 0x6a, 0x70, 0x25, 0xfe
+        };
 
         private static readonly IUuidGenerator _version4 = new Version4Generator();
         private static readonly IUuidGenerator _version5 = new Version5Generator(new Uuid(Version5Generator.NS_URL));
 
         [Benchmark(Baseline = true)]
-        public void CreateGuid()
+        public void CreateGuidFromByteArray()
         {
-            new Guid(SampleUuid);
+            new Guid(SampleArray);
         }
 
         [Benchmark]
-        public void CreateUuid()
+        public void CreateGuidFromString()
         {
-            new Uuid(SampleUuid);
+            new Guid(SampleString);
+        }
+
+        [Benchmark]
+        public void CreateUuidFromByteArray()
+        {
+            new Uuid(SampleArray);
+        }
+
+        [Benchmark]
+        public void CreateUuidFromString()
+        {
+            new Uuid(SampleString);
         }
 
         [Benchmark]
