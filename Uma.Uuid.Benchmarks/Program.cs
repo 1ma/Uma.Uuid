@@ -1,13 +1,12 @@
-﻿using System;
-using BenchmarkDotNet.Running;
+﻿using BenchmarkDotNet.Running;
 
 namespace Uma.Uuid.Benchmarks
 {
-    class Program
+    internal class Program
     {
         static void Main(string[] args)
         {
-            BenchmarkRunner.Run<UuidProfiling>();
+            BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
         }
     }
 }
