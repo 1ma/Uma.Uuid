@@ -24,5 +24,18 @@ namespace Uma.Uuid.Tests
 
             Assert.Throws<ArgumentException>(() => generator.Generate());
         }
+
+        [Fact]
+        public void TestCombGenerator()
+        {
+            var generator = new CombGenerator();
+
+            for (var i = 0; i < 20; i++)
+            {
+                Assert.Equal('4', generator.Generate().ToString()[14]);
+            }
+
+            Assert.True(true);
+        }
     }
 }

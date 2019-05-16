@@ -13,4 +13,4 @@ run-benchmarks:
   script:
     - cd Uma.Uuid.Benchmarks
     - dotnet build -c Release
-    - dotnet bin/Release/netcoreapp2.2/Uma.Uuid.Benchmarks.dll
+    - dotnet bin/Release/netcoreapp2.2/Uma.Uuid.Benchmarks.dll -f Generation
