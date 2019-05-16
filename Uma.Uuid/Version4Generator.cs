@@ -15,7 +15,7 @@ namespace Uma.Uuid
         {
             _random = new Random();
         }
-        public Uuid Generate(string name = null)
+        public Uuid NewUuid(string name = null)
         {
             var bytes = new byte[16];
 

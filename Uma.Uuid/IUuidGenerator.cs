@@ -2,6 +2,6 @@ namespace Uma.Uuid
 {
     public interface IUuidGenerator
     {
-        Uuid Generate(string name = null);
+        Uuid NewUuid(string name = null);
     }
 }

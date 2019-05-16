@@ -21,7 +21,7 @@ namespace Uma.Uuid
         /// </remarks>
         private const long GregorianOffset = 499163040000000000;
 
-        public Uuid Generate(string name = null)
+        public Uuid NewUuid(string name = null)
         {
             return new Uuid("");
         }

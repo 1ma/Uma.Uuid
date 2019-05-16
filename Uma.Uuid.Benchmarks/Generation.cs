@@ -20,25 +20,25 @@ namespace Uma.Uuid.Benchmarks
         [Benchmark]
         public void GenerateComb()
         {
-            _comb.Generate();
+            _comb.NewUuid();
         }
 
         [Benchmark]
         public void GenerateVersion4()
         {
-            _version4.Generate();
+            _version4.NewUuid();
         }
 
         [Benchmark]
         public void GenerateVersion5()
         {
-            _version5.Generate("dot.net");
+            _version5.NewUuid("dot.net");
         }
 
         [Benchmark]
         public void GenerateSequential()
         {
-            _sequential.Generate();
+            _sequential.NewUuid();
         }
     }
 }

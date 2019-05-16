@@ -17,7 +17,7 @@ namespace Uma.Uuid
             BinaryPrimitives.WriteUInt64BigEndian(_bytes.AsSpan(), head);
         }
 
-        public Uuid Generate(string name = null)
+        public Uuid NewUuid(string name = null)
         {
             var tail = new byte[sizeof(ulong)];
 

@@ -29,7 +29,7 @@ namespace Uma.Uuid
             _hi = ns.ToByteArray();
         }
 
-        public Uuid Generate(string name = null)
+        public Uuid NewUuid(string name = null)
         {
             if (name == null)
             {
