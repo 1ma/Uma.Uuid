@@ -9,12 +9,8 @@ namespace Uma.Uuid
     /// </summary>
     public class Version4Generator : IUuidGenerator
     {
-        private readonly Random _random;
+        private readonly Random _random = new Random();
 
-        public Version4Generator()
-        {
-            _random = new Random();
-        }
         public Uuid NewUuid(string name = null)
         {
             var bytes = new byte[16];
