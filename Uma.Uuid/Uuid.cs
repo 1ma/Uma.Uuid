@@ -9,7 +9,7 @@ namespace Uma.Uuid
     /// </summary>
     public class Uuid
     {
-        private readonly string _uuid;
+        private readonly byte[] _uuid;
 
         private static readonly Regex _regex = new Regex(
             @"^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
@@ -28,7 +28,7 @@ namespace Uma.Uuid
                 throw new ArgumentException($"text is not a valid Uuid. Got: {text}");
             }
 
-            _uuid = text;
+            _uuid = Transcoder.HexToBin(text.Replace("-", string.Empty));
         }
 
         public Uuid(byte[] bytes)
@@ -38,9 +38,14 @@ namespace Uma.Uuid
                 throw new ArgumentException($"Length of bytes for new Uuid is not 16. Got: {bytes.Length.ToString()}");
             }
 
-            var tmp = Transcoder.BinToHex(bytes);
+            _uuid = bytes;
+        }
 
-            _uuid = string.Format(
+        public override string ToString()
+        {
+            var tmp = Transcoder.BinToHex(_uuid);
+
+            return string.Format(
                 "{0}-{1}-{2}-{3}-{4}",
                 tmp.Substring(0, 8),
                 tmp.Substring(8, 4),
@@ -50,19 +55,14 @@ namespace Uma.Uuid
             );
         }
 
-        public override string ToString()
+        public byte[] ToByteArray()
         {
             return _uuid;
         }
 
-        public byte[] ToByteArray()
-        {
-            return Transcoder.HexToBin(_uuid.Replace("-", string.Empty));
-        }
-
         public Guid ToGuid()
         {
-            return new Guid(_uuid);
+            return new Guid(ToString());
         }
     }
 }
