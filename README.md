@@ -62,7 +62,7 @@ public void TestUuidGuidDivergence()
 
 ### How do you convert an `Uuid` to a plain old `Guid`?
 
-The value object as a helper method for that, `Uuid.ToGuid()`.
+The value object has a helper method for that, `Uuid.ToGuid()`.
 
 #### Which UUID generator is the "best"?
 

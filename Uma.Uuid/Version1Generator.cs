@@ -5,6 +5,9 @@ using Uma.Uuid.Transcoding;
 
 namespace Uma.Uuid
 {
+    /// <summary>
+    /// A Version 1 Uuid generator, as described in RFC 4122.
+    /// </summary>
     public class Version1Generator : IUuidGenerator
     {
         /// <summary>

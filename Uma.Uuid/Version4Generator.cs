@@ -3,9 +3,7 @@ using System;
 namespace Uma.Uuid
 {
     /// <summary>
-    /// IGuidGenerator that returns a version 4 Guid.
-    ///
-    /// https://tools.ietf.org/html/rfc4122#section-4.4
+    /// A Version 4 Uuid generator, as described in RFC 4122.
     /// </summary>
     public class Version4Generator : IUuidGenerator
     {

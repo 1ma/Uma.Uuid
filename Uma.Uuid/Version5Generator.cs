@@ -5,9 +5,7 @@ using System.Text;
 namespace Uma.Uuid
 {
     /// <summary>
-    /// IGuidGenerator that returns a version 5 Guid.
-    ///
-    /// https://tools.ietf.org/html/rfc4122#section-4.3
+    /// A Version 5 Uuid generator, as described in RFC 4122.
     /// </summary>
     public class Version5Generator : IUuidGenerator
     {
