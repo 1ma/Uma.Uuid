@@ -41,7 +41,7 @@ same object is serialized with `Guid.ToString()`.
 In contrast `Uuid.ToByteArray()` and `Uuid.ToString()` always serialize the underlying bytes in Big-Endian, which is
 specially important for COMB Uuids, otherwise their "monotonically increasing" property would be lost.
 
-This can be illustrated with the following xUnit test (that is actually present in the library's test suite):
+This can be illustrated with the following xUnit test (that is taken from the actual test suite):
 
 ```csharp
 [Fact]
@@ -66,7 +66,7 @@ public void TestUuidGuidDivergence()
 
 The value object has a helper method for that, `Uuid.ToGuid()`.
 
-#### Which UUID generator is the "best"?
+#### Which `IUuidGenerator` is the "best"?
 
 Hands down the `CombGenerator`, for the reasons exposed by Jimmy Nilsson in his classical article [The Cost of GUIDs as Primary Keys].
 
@@ -98,8 +98,8 @@ namespace Uuid.Sample
 
 ### Benchmarking
 
-There is [BenchmarkDotNet] suite under `Uma.Uuid.Benchmarks`. Currently `Guid` is much more faster than `Uuid` when
-constructing from a string, but more or less on par when constructing from a 16-byte array.
+There is a [BenchmarkDotNet] suite under `Uma.Uuid.Benchmarks`. Currently `Guid` is much faster than `Uuid` when
+constructing from a string, but about on par when constructing from a 16-byte array.
 
 On the other hand all generators run generally faster than `Guid.NewGuid`. Here's a sample run on my laptop:
 
