@@ -9,7 +9,9 @@ This software is in alpha stage.
 
 ### Installation
 
-TODO publish to NuGet
+```
+dotnet add package Uma.Uuid --version 0.1.0 
+```
 
 ### How does `Uma.Uuid` compare to the standard `Guid` class?
 
