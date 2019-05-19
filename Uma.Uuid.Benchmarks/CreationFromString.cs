@@ -9,15 +9,15 @@ namespace Uma.Uuid.Benchmarks
         private const string SampleString = "5afd6486-4279-5a52-8dad-768c6a7025fe";
 
         [Benchmark(Baseline = true)]
-        public void CreateGuidFromString()
+        public Guid CreateGuidFromString()
         {
-            new Guid(SampleString);
+            return new Guid(SampleString);
         }
 
         [Benchmark]
-        public void CreateUuidFromString()
+        public Uuid CreateUuidFromString()
         {
-            new Uuid(SampleString);
+            return new Uuid(SampleString);
         }
     }
 }

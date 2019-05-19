@@ -12,33 +12,33 @@ namespace Uma.Uuid.Benchmarks
         private static readonly IUuidGenerator _sequential = new SequentialGenerator();
 
         [Benchmark(Baseline = true)]
-        public void GenerateGuid()
+        public Guid GenerateGuid()
         {
-            Guid.NewGuid();
+            return Guid.NewGuid();
         }
 
         [Benchmark]
-        public void GenerateComb()
+        public Uuid GenerateComb()
         {
-            _comb.NewUuid();
+            return _comb.NewUuid();
         }
 
         [Benchmark]
-        public void GenerateVersion4()
+        public Uuid GenerateVersion4()
         {
-            _version4.NewUuid();
+            return _version4.NewUuid();
         }
 
         [Benchmark]
-        public void GenerateVersion5()
+        public Uuid GenerateVersion5()
         {
-            _version5.NewUuid("dot.net");
+            return _version5.NewUuid("dot.net");
         }
 
         [Benchmark]
-        public void GenerateSequential()
+        public Uuid GenerateSequential()
         {
-            _sequential.NewUuid();
+            return _sequential.NewUuid();
         }
     }
 }

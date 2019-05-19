@@ -13,15 +13,15 @@ namespace Uma.Uuid.Benchmarks
         };
 
         [Benchmark(Baseline = true)]
-        public void CreateGuidFromByteArray()
+        public Guid CreateGuidFromByteArray()
         {
-            new Guid(SampleArray);
+            return new Guid(SampleArray);
         }
 
         [Benchmark]
-        public void CreateUuidFromByteArray()
+        public Uuid CreateUuidFromByteArray()
         {
-            new Uuid(SampleArray);
+            return new Uuid(SampleArray);
         }
     }
 }
