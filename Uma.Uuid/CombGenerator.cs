@@ -18,14 +18,12 @@ namespace Uma.Uuid
     /// </remarks>
     public class CombGenerator : IUuidGenerator
     {
-        private const long UnixEpoch = 621355968000000000;
-
         private readonly IUuidGenerator _version4 = new Version4Generator();
 
         public Uuid NewUuid(string name = null)
         {
             var tmp = new byte[8];
-            var timestamp = DateTimeOffset.Now.Ticks - UnixEpoch;
+            var timestamp = DateTimeOffset.Now.Ticks - DateTimeOffset.UnixEpoch.Ticks;
             BinaryPrimitives.WriteInt64BigEndian(tmp.AsSpan(), (timestamp / 10) << 4);
 
             var bytes = new byte[16];
