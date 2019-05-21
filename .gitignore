@@ -1,3 +1,4 @@
+*.opencover.xml
 .idea/
 .vscode/
 BenchmarkDotNet.Artifacts/

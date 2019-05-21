@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Uma.Uuid.Tests
 {
-    public class GeneratorTest
+    public class Version4GeneratorTest
     {
         [Fact]
         public void TestV4Generator()

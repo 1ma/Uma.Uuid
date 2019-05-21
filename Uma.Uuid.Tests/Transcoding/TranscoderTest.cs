@@ -1,8 +1,7 @@
 using System;
-using Uma.Uuid.Transcoding;
 using Xunit;
 
-namespace Uma.Uuid.Tests
+namespace Uma.Uuid.Transcoding.Tests
 {
     public class TranscoderTest
     {
