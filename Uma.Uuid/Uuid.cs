@@ -7,7 +7,7 @@ namespace Uma.Uuid
     /// <summary>
     /// Value object that encapsulates the 128 bits of an UUID.
     /// </summary>
-    public struct Uuid
+    public readonly struct Uuid
     {
         private readonly byte[] _uuid;
 
